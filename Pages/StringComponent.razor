@@ -1,0 +1,41 @@
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+
+@inherits Base;
+
+<input @ref="compElement" @ref:suppressField type="text" value="@Value" />
+
+@code {
+    [Parameter]
+    [JsonPropertyName("value")]
+    public string Value
+    {
+        get { return this.value; }
+        set
+        {
+            if (this.value != value)
+            {
+                this.value = value;
+            }
+        }
+    }
+    private string value { get; set; } = string.Empty;
+
+    [Parameter]
+    [JsonPropertyName("isChanged")]
+    public bool IsChanged
+    {
+        get { return this.isChanged; }
+        set
+        {
+            if (this.isChanged != value)
+            {
+                this.isChanged = value;
+            }
+        }
+    }
+    private bool isChanged { get; set; } = false;
+
+    [Parameter]
+    public EventCallback ValueChanged { get; set; }
+}

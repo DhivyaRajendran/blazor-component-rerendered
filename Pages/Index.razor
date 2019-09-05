@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<NumberComponent @ref="numberComp" Value="1" IsChanged="@isNumberChanged" OnFocusOut="onFocusOut"></NumberComponent>
+<StringComponent Value="@stringValue"></StringComponent>
+
+@code {
+    NumberComponent numberComp;
+    bool isNumberChanged = false;
+    string stringValue = "Testing";
+    protected void onFocusOut()
+    {
+        this.stringValue = this.numberComp.IsChanged.ToString();
+    }
+}

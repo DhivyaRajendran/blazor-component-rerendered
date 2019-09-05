@@ -1,0 +1,43 @@
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+
+@inherits Base;
+
+<input @ref="compElement" type="number" value="@Value" @onfocusout="OnFocusOut" />
+
+
+@code {
+
+    [Parameter]
+    [JsonPropertyName("value")]
+    public int Value
+    {
+        get { return this.value; }
+        set
+        {
+            if (this.value != value)
+            {
+                this.value = value;
+            }
+        }
+    }
+    private int value { get; set; } = 0;
+
+    [Parameter]
+    [JsonPropertyName("isChanged")]
+    public bool IsChanged
+    {
+        get { return this.isChanged; }
+        set
+        {
+            if (this.isChanged != value)
+            {
+                this.isChanged = value;
+            }
+        }
+    }
+    private bool isChanged { get; set; } = false;
+
+    [Parameter]
+    public EventCallback OnFocusOut { get; set; }
+}
